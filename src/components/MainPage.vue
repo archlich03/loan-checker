@@ -47,7 +47,7 @@ export default {
 
       // recheck HTML input amounts
       if (
-        income.toString.length == 0 || age.toString.length == 0 || creditScore.toString.length == 0 || typeof income != "number" || typeof age != "number" || typeof creditScore != "number" || age < 1 || age > 100 || creditScore < 0 || creditScore > 100 || income <= 0 || income > 10000
+        income == null || age == null || creditScore == null || income.toString.length == 0 || age.toString.length == 0 || creditScore.toString.length == 0 || typeof income != "number" || typeof age != "number" || typeof creditScore != "number" || age < 1 || age > 100 || creditScore < 0 || creditScore > 100 || income <= 0 || income > 10000
       )
         shouldLoan = "Invalid input types";
 
