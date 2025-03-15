@@ -49,7 +49,7 @@ export default {
       if (
         income == null || age == null || creditScore == null || income.toString.length == 0 || age.toString.length == 0 || creditScore.toString.length == 0 || typeof income != "number" || typeof age != "number" || typeof creditScore != "number" || age < 1 || age > 100 || creditScore < 0 || creditScore > 100 || income <= 0 || income > 10000
       ) {
-        this.result = "Invalid result types";
+        this.result = "Invalid input types";
       } else {
         let loanAmount = (65 - age) * income * 12 * 0.5; // 50% of all possible earnings
 
