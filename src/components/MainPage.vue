@@ -48,29 +48,30 @@ export default {
       // recheck HTML input amounts
       if (
         income == null || age == null || creditScore == null || income.toString.length == 0 || age.toString.length == 0 || creditScore.toString.length == 0 || typeof income != "number" || typeof age != "number" || typeof creditScore != "number" || age < 1 || age > 100 || creditScore < 0 || creditScore > 100 || income <= 0 || income > 10000
-      )
-        shouldLoan = "Invalid input types";
+      ) {
+        this.result = "Invalid result types";
+      } else {
+        let loanAmount = (65 - age) * income * 12 * 0.5; // 50% of all possible earnings
 
-      let loanAmount = (65 - age) * income * 12 * 0.5; // 50% of all possible earnings
+        if (age < 18)
+          shouldLoan = "Too young";
 
-      if (age < 18)
-        shouldLoan = "Too young";
+        if (age > 64)
+          shouldLoan = "Too old";
 
-      if (age > 64)
-        shouldLoan = "Too old";
+        if (income < 400)
+          shouldLoan = "Too low income";
 
-      if (income < 400)
-        shouldLoan = "Too low income";
+        if (creditScore > acceptableRisk)
+          shouldLoan = "Too spicy client";
 
-      if (creditScore > acceptableRisk)
-        shouldLoan = "Too spicy client";
+        if (shouldLoan == "")
+          shouldLoan = "Best offer, sir: " + Math.round(loanAmount * ( 1 + creditScore / 100 ), 0) + " euros for " + (65 - age) + " years";
+        else
+          shouldLoan = "No money: " + shouldLoan;
 
-      if (shouldLoan == "")
-        shouldLoan = "Best offer, sir: " + Math.round(loanAmount * ( 1 + creditScore / 100 ), 0) + " euros for " + (65 - age) + " years";
-      else
-        shouldLoan = "No money: " + shouldLoan;
-
-      this.result = shouldLoan
+        this.result = shouldLoan;
+      }
     }
   }
 }
