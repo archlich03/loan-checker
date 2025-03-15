@@ -2,15 +2,15 @@
   <form @submit.prevent="submitForm" class="form">
     <label>
       Monthly income (&euro;):
-      <input type="number" v-model="form.income" min="0" max="10000" class="input-field" />
+      <input type="number" v-model="form.income" min="0" max="10000" class="input-field" required />
     </label>
     <label>
       Age:
-      <input type="number" v-model="form.age" min="1" max="100" class="input-field" />
+      <input type="number" v-model="form.age" min="1" max="100" class="input-field" required />
     </label>
     <label>
       Credit Score:
-      <input type="number" v-model="form.creditScore" min="0.00" max="100.00" step="0.01" class="input-field" />
+      <input type="number" v-model="form.creditScore" min="0.00" max="100.00" step="0.01" class="input-field" required/>
     </label>
     <button type="submit" class="submit-button">Submit</button>
     <p v-if="result" class="result">{{ result }}</p>
@@ -47,7 +47,7 @@ export default {
 
       // recheck HTML input amounts
       if (
-        income != "" || age != "" || creditScore != "" || typeof income != "number" || typeof age != "number" || typeof creditScore != "number" || age < 1 || age > 100 || creditScore < 0 || creditScore > 100 || income <= 0 || income > 10000
+        income.toString.length == 0 || age.toString.length == 0 || creditScore.toString.length == 0 || typeof income != "number" || typeof age != "number" || typeof creditScore != "number" || age < 1 || age > 100 || creditScore < 0 || creditScore > 100 || income <= 0 || income > 10000
       )
         shouldLoan = "Invalid input types";
 
