@@ -53,8 +53,11 @@ export default {
 
       let loanAmount = (65 - age) * income * 12 * 0.5; // 50% of all possible earnings
 
-      if (age < 18 || age > 64)
-        shouldLoan = "Too old or young";
+      if (age < 18)
+        shouldLoan = "Too young";
+
+      if (age > 64)
+        shouldLoan = "Too old";
 
       if (income < 400)
         shouldLoan = "Too low income";
